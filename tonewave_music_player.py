@@ -92,7 +92,9 @@ root = ctk.CTk()
 root.geometry("800x650")
 root.minsize(800, 650)
 root.title("Tonewave")
-root.iconbitmap(resource_path('assets/Icon/music-app.ico'))
+icon_path = find_resource('assets/icon/music_app.ico')
+if icon_path:
+    root.iconbitmap(str(icon_path))
 
 # --- Globals ---
 current_track = ""
@@ -146,7 +148,7 @@ def display_album_art():
             album_label.configure(image=photo, text="")
             album_label.image = photo
             return
-    no_album_image = Image.open(find_resource("Gray/no-album.png"))
+    no_album_image = Image.open(find_resource("assets/buttons/gray_buttons/no_album.png"))
     img_width, img_height = no_album_image.size
     ratio = min(frame_width / img_width, frame_height / img_height)
     new_width = int(img_width * ratio)
@@ -368,7 +370,7 @@ def update_progress():
 main_frame = ctk.CTkFrame(root, fg_color="transparent")
 main_frame.place(x=10, y=10, relwidth=0.975, relheight=0.975)
 
-no_art_img = load_ctk_image("Gray/no-album.png", size=(480, 250))
+no_art_img = load_ctk_image("assets/buttons/gray_buttons/no_album.png", size=(480, 250))
 
 # Playlist Frame
 playlist_frame = ctk.CTkFrame(main_frame, width=250, fg_color="#1a1a1a")
@@ -383,9 +385,9 @@ playlist_container = scrollable_frame
 
 playlist_btn_frame = ctk.CTkFrame(playlist_frame, fg_color="transparent")
 playlist_btn_frame.pack(pady=5)
-add_btn = make_image_button(playlist_btn_frame, "Gray/add-button.png", add_tracks, size=(30, 30))
+add_btn = make_image_button(playlist_btn_frame, "assets/buttons/gray_buttons/add_button.png", add_tracks, size=(30, 30))
 add_btn.pack(side="left", padx=5)
-clear_btn = make_image_button(playlist_btn_frame, "Gray/clear-button.png", clear_playlist, size=(30, 30))
+clear_btn = make_image_button(playlist_btn_frame, "assets/buttons/gray_buttons/clear_button.png", clear_playlist, size=(30, 30))
 clear_btn.pack(side="left", padx=5)
 
 # --- Player Frame ---
@@ -414,21 +416,21 @@ ctrl_frame = ctk.CTkFrame(player_frame, fg_color="transparent")
 ctrl_frame.pack(pady=15)
 
 #-- Control Buttons ---
-play_img = load_ctk_image("Gray/play-button.png", size=(play_btn_size, play_btn_size))
-pause_img = load_ctk_image("Gray/pause-button.png", size=(play_btn_size, play_btn_size))
-next_img = load_ctk_image("Gray/next-button.png", size=(small_btn_size, small_btn_size))
-prev_img = load_ctk_image("Gray/previous-button.png", size=(small_btn_size, small_btn_size))
-shuffle_img = load_ctk_image("Gray/shuffle-button.png", size=(small_btn_size, small_btn_size))
-loop_off_img = load_ctk_image("Gray/loop-off-button.png", size=(small_btn_size, small_btn_size))
-loop_all_img = load_ctk_image("Gray/loop-all-button.png", size=(small_btn_size, small_btn_size))
-loop_one_img = load_ctk_image("Gray/loop-one-button.png", size=(small_btn_size, small_btn_size))
+play_img = load_ctk_image("assets/buttons/gray_buttons/play_button.png", size=(play_btn_size, play_btn_size))
+pause_img = load_ctk_image("assets/buttons/gray_buttons/pause_button.png", size=(play_btn_size, play_btn_size))
+next_img = load_ctk_image("assets/buttons/gray_buttons/next_button.png", size=(small_btn_size, small_btn_size))
+prev_img = load_ctk_image("assets/buttons/gray_buttons/previous_button.png", size=(small_btn_size, small_btn_size))
+shuffle_img = load_ctk_image("assets/buttons/gray_buttons/shuffle_button.png", size=(small_btn_size, small_btn_size))
+loop_off_img = load_ctk_image("assets/buttons/gray_buttons/loop_off_button.png", size=(small_btn_size, small_btn_size))
+loop_all_img = load_ctk_image("assets/buttons/gray_buttons/loop_all_button.png", size=(small_btn_size, small_btn_size))
+loop_one_img = load_ctk_image("assets/buttons/gray_buttons/loop_one_button.png", size=(small_btn_size, small_btn_size))
 
 #-- Control Buttons Creation ---
-shuffle_btn = make_image_ctkbutton(ctrl_frame, "Gray/shuffle-button.png", shuffle_track, size=(small_btn_size, small_btn_size))
-prev_btn    = make_image_ctkbutton(ctrl_frame, "Gray/previous-button.png", prev_track, size=(small_btn_size, small_btn_size))
-play_pause_btn = make_image_ctkbutton(ctrl_frame, "Gray/play-button.png", toggle_play_pause, size=(play_btn_size, play_btn_size))
-next_btn    = make_image_ctkbutton(ctrl_frame, "Gray/next-button.png", next_track, size=(small_btn_size, small_btn_size))
-loop_btn    = make_image_ctkbutton(ctrl_frame, "Gray/loop-off-button.png", toggle_loop, size=(small_btn_size, small_btn_size)) 
+shuffle_btn = make_image_ctkbutton(ctrl_frame, "assets/buttons/gray_buttons/shuffle_button.png", shuffle_track, size=(small_btn_size, small_btn_size))
+prev_btn    = make_image_ctkbutton(ctrl_frame, "assets/buttons/gray_buttons/previous_button.png", prev_track, size=(small_btn_size, small_btn_size))
+play_pause_btn = make_image_ctkbutton(ctrl_frame, "assets/buttons/gray_buttons/play_button.png", toggle_play_pause, size=(play_btn_size, play_btn_size))
+next_btn    = make_image_ctkbutton(ctrl_frame, "assets/buttons/gray_buttons/next_button.png", next_track, size=(small_btn_size, small_btn_size))
+loop_btn    = make_image_ctkbutton(ctrl_frame, "assets/buttons/gray_buttons/loop_off_button.png", toggle_loop, size=(small_btn_size, small_btn_size)) 
 
 #-- Control Buttons Layout ---
 shuffle_btn.grid(row=0, column=0, padx=5)
@@ -451,18 +453,18 @@ def toggle_mute():
         prev_volume = volume_var.get()
         volume_var.set(0)
         set_volume(0)
-        muted_img = load_ctk_image("Gray/speaker-button-mute.png", size=(30,30))
+        muted_img = load_ctk_image("assets/buttons/gray_buttons/speaker_button_mute.png", size=(30,30))
         volume_label.configure(image=muted_img)
         is_muted = True
     else:
         volume_var.set(prev_volume)
         set_volume(prev_volume)
-        unmuted_img = load_ctk_image("Gray/speaker-button-mute.png", size=(30,30))
+        unmuted_img = load_ctk_image("assets/buttons/gray_buttons/speaker_button.png", size=(30,30))
         volume_label.configure(image=unmuted_img)
         volume_label.image = unmuted_img
         is_muted = False
 
-volume_label = make_image_ctkbutton(volume_frame, "Gray/speaker-button-mute.png", toggle_mute, size=(30,30))
+volume_label = make_image_ctkbutton(volume_frame, "assets/buttons/gray_buttons/speaker_button_mute.png", toggle_mute, size=(30,30))
 volume_label.pack(side="left", padx=(0,10))
 
 volume_var = ctk.DoubleVar(value=70)
@@ -471,7 +473,7 @@ def set_volume(val):
         mixer.music.set_volume(float(val)/100)
     except Exception:
         pass
-volume_slider = ctk.CTkSlider(volume_frame, fr0m_=0, to=100, variable=volume_var,
+volume_slider = ctk.CTkSlider(volume_frame, from_=0, to=100, variable=volume_var,
                               command=set_volume, width=300)
 volume_slider.pack(side="left")
 set_volume(70)
