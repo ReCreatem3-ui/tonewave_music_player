@@ -440,20 +440,7 @@ loop_btn.grid(row=0, column=4, padx=5)
 # --- Volume Control ---
 volume_frame = ctk.CTkFrame(player_frame, fg_color="transparent")
 volume_frame.pack(pady=10)
-speaker_img = load_ctk_image("Gray/speaker-button.png", size=(20,20))
-volume_label = make_image_ctkbutton(volume_frame, "Gray/speaker-button.png", None, size=(30,30))
-volume_label.pack(side="left", padx=(0,10))
 
-volume_var = ctk.DoubleVar(value=70)
-def set_volume(val):
-    try:
-        mixer.music.set_volume(float(val)/100)
-    except Exception:
-        pass
-volume_slider = ctk.CTkSlider(volume_frame, from_=0, to=100, variable=volume_var,
-                              command=set_volume, width=300)
-volume_slider.pack(side="left")
-set_volume(70)
 
 # --- Start UI ---
 root.mainloop()
