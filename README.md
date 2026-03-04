@@ -81,7 +81,7 @@ Tonewave uses image-based buttons loaded from the `Gray/` folder. These are stan
 ---
 
 ## 🎮 How to Use
-<img width="2560" height="1440" alt="Tanya Markova" src="https://github.com/user-attachments/assets/267ae02f-eab5-42cf-bb51-c765c1ced409" />
+<img width="2560" height="1440" alt="Tonewave User Manual" src="https://github.com/user-attachments/assets/e4d169e6-9cf7-4624-a5b2-05b7d93e0456" />
 
 | Action | How |
 |---|---|
