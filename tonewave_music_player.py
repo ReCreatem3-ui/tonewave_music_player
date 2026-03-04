@@ -476,5 +476,12 @@ volume_slider = ctk.CTkSlider(volume_frame, fr0m_=0, to=100, variable=volume_var
 volume_slider.pack(side="left")
 set_volume(70)
 
+# --- Keyboard Shortcuts ---
+root.bind("<space>", lambda e: toggle_play_pause())
+root.bind("<Right>", lambda e: next_track())
+root.bind("<Left>", lambda e: prev_track())
+root.bind("<Up>", lambda e: volume_var.set(min(100, volume_var.get() + 5) or set_volume(volume_var.get())))
+root.bind("<Down>", lambda e: volume_var.set(max(0, volume_var.get() - 5) or set_volume(volume_var.get())))
+
 # --- Start UI ---
 root.mainloop()
