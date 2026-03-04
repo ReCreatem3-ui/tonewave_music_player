@@ -1,3 +1,9 @@
 build/
 dist/
+*.exe
 *.spec
+__pycache__/
+*.pyc
+albums/
+*.mp3
+*.wav
