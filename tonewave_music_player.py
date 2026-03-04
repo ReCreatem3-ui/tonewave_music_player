@@ -466,7 +466,15 @@ volume_label = make_image_ctkbutton(volume_frame, "", toggle_mute, size=(30,30))
 volume_label.pack(side="left", padx=(0,10))
 
 volume_var = ctk.DoubleVar(value=70)
-
+def set_volume(val):
+    try:
+        mixer.music.set_volume(float(val)/100)
+    except Exception:
+        pass
+volume_slider = ctk.CTkSlider(volume_frame, fr0m_=0, to=100, variable=volume_var,
+                              command=set_volume, width=300)
+volume_slider.pack(side="left")
+set_volume(70)
 
 # --- Start UI ---
 root.mainloop()
