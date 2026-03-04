@@ -464,7 +464,7 @@ def toggle_mute():
         volume_label.image = unmuted_img
         is_muted = False
 
-volume_label = make_image_ctkbutton(volume_frame, "assets/buttons/gray_buttons/speaker_button_mute.png", toggle_mute, size=(30,30))
+volume_label = make_image_ctkbutton(volume_frame, "assets/buttons/gray_buttons/speaker_button.png", toggle_mute, size=(30,30))
 volume_label.pack(side="left", padx=(0,10))
 
 volume_var = ctk.DoubleVar(value=70)
