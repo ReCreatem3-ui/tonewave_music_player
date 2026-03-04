@@ -90,6 +90,7 @@ ctk.set_default_color_theme("dark-blue")
 # --- Window ---
 root = ctk.CTk()
 root.geometry("800x650")
+root.minsize(800, 650)
 root.title("Tonewave")
 root.iconbitmap(resource_path('assets/Icon/music-app.ico'))
 
