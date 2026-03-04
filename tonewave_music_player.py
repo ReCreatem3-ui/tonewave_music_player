@@ -441,6 +441,32 @@ loop_btn.grid(row=0, column=4, padx=5)
 volume_frame = ctk.CTkFrame(player_frame, fg_color="transparent")
 volume_frame.pack(pady=10)
 
+# --- Mute Toggle ---
+is_muted = False
+prev_volume = 70
+
+def toggle_mute():
+    global is_muted, prev_volume
+    if not is_muted:
+        prev_volume = volume_var.get()
+        volume_var.set(0)
+        set_volume(0)
+        muted_img = load_ctk_image("gray", size=(30,30))
+        volume_label.configure(image=muted_img)
+        is_muted = True
+    else:
+        volume_var.set(prev_volume)
+        set_volume(prev_volume)
+        unmuted_img = load_ctk_image("", size=(30,30))
+        volume_label.configure(image=unmuted_img)
+        volume_label.image = unmuted_img
+        is_muted = False
+
+volume_label = make_image_ctkbutton(volume_frame, "", toggle_mute, size=(30,30))
+volume_label.pack(side="left", padx=(0,10))
+
+volume_var = ctk.DoubleVar(value=70)
+
 
 # --- Start UI ---
 root.mainloop()
